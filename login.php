@@ -1,6 +1,7 @@
 <?php
 include "mysql_mysqli.inc.php";
 require 'function.php';
+include "../config.php";
 session_start();
 
 //ceklogin

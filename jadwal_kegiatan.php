@@ -1,5 +1,6 @@
 <?php
 require 'function.php'
+include 'include/session.php';
 ?>
 
 <!DOCTYPE html>
@@ -168,13 +169,10 @@ require 'function.php'
                                     <thead>
                                         <tr>
                                             <th>NAMA MAHASISWA</th>
-                                            <th>NPM</th>
                                             <th>TANGGAL</th>
-                                            <th>JAM OPERASIONAL</th>
-                                            <th>RUMAH SAKIT</th>
-                                            <th>STASE</th>
-                                            <th>KEGIATAN</th>
                                             <th>DOSEN PEMBIMBING</th>
+                                            <th>KEGIATAN</th>
+                                            <th>JUDUL</th>
                                             <th>KETERANGAN</th>
                                             <th>ACTION</th>
                                         </tr>
@@ -185,7 +183,6 @@ require 'function.php'
                                             $ambildata = mysqli_query($conn, "select * from kom_kegiatancoas");
                                             while($data=mysqli_fetch_array($ambildata)){
                                                 $nama_mahasiswa   = $data['nama_mahasiswa'];
-                                                $npm              = $data['npm'];
                                                 $tanggal          = $data['tanggal'];
                                                 $dosen_pembimbing = $data['dosen_pembimbing'];
                                                 $kegiatan         = $data['kegiatan'];
@@ -194,14 +191,12 @@ require 'function.php'
                                         ?>
                                         <tr>
                                             <td><?=$nama_mahasiswa;?></td>
-                                            <td><?=$npm;?></td>
                                             <td><?=$tanggal;?></td>
                                             <td><?=$dosen_pembimbing;?></td>
                                             <td><?=$kegiatan;?></td>
                                             <td><?=$judul;?></td>
                                             <td><?=$keterangan;?></td>
                                             <td>
-                                            <button type="button" class="btn btn-secondary">Edit</button>
                                                 <button type="button" class="btn btn-danger">Hapus</button>
                                             </td>
                                         </tr>
@@ -250,22 +245,18 @@ require 'function.php'
                 <form method="POST" action="" enctype="multipart/form-data">
                     <section class="base">
                 <div>
-                    <p>Nama Mahasiswa :</p>
-                    <input type="text" name="nama_mahasiswa" class="form-control">
-                    <p>NPM :</p>
-                    <input type="text" name="npm" class="form-control">
                     <p>Tanggal :</p>
                     <input type="date" name="tanggal" class="form-control">
-                    <p>Jam Operasional :</p>
-                    <input type="text" name="jam_operasional" class="form-control">
-                    <p>Rumah Sakit :</p>
-                    <input type="text" name="rumah_sakit" value="RSUD DRS H AMRI TAMBUNAN" readonly class="form-control">
-                    <p>Stase :</p>
-                    <input type="text" name="stase" class="form-control">
+                    <p>Dosen Pembimbing </p>
+                    <select name="dosen_pembimbing" id="dosen_pembimbing" class="form_control">
+                        <option value="">--Pilih--</option>
+                        <option>dr asti</option>
+                        <option>dr rahel</option>
+                    </select>
                     <p>Kegiatan :</p>
-                    <input type="text" name="kegiatan" class="form-control">
-                    <p>Nama Dosen :</p>
-                    <input type="text" name="nama_dosen" class="form-control">
+                    <input type="text" name="kegiatan" class="form-control" required>
+                    <p>Judul :</p>
+                    <input type="text" name="judul" class="form-control" required>
                     <p>Keterangan :</p>
                     <input type="text" name="keterangan" class="form-control">
                     <div class="modal-footer">

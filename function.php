@@ -17,6 +17,7 @@ function base_url($url = null) {
     }
 }
 
+//daftar
 if(isset($_POST['register'])){
     //jika tombol register diklik
 
@@ -24,10 +25,10 @@ if(isset($_POST['register'])){
     $password = $_POST['password'];
 
     //fungsi enkrip password
-    $epassword = password_hash()
+    $epassword = password_hash($password, PASSWORD_DEFAULT);
 
     //insert into database
-    $insert = mysqli_query($conn,"INSERT INTO kom_user (username,password) VALUES ('$email','$password')");
+    $insert = mysqli_query($conn,"INSERT INTO kom_user (email,password) VALUES ('$email','$epassword')");
 
     if($insert){
         //jika berhasil
@@ -65,16 +66,14 @@ if(isset($_POST['addkegiatan'])){
     $nama_mahasiswa      = $_POST['nama_mahasiswa'];
     $npm                 = $_POST['npm'];
     $tanggal             = $_POST['tanggal'];
-    $jam_operasional     = $_POST['jam_operasional'];
-    $rumah_sakit         = $_POST['rumah_sakit'];
-    $stase               = $_POST['stase'];
+    $dosen_pembimbing    = $_POST['dosen_pembimbing'];
     $kegiatan            = $_POST['kegiatan'];
-    $nama_dosen          = $_POST['nama_dosen'];
+    $judul               = $_POST['judul'];
     $keterangan          = $_POST['keterangan'];
 
 
-    $addtable = mysqli_query($conn, "insert into kom_kegiatan (nama_mahasiswa,npm,tanggal,jam_operasional,rumah_sakit,stase,kegiatan,nama_dosen,keterangan)
-    values ('$nama_mahasiswa','$npm','$tanggal','$jam_operasional','$rumah_sakit','$stase','$kegiatan','$nama_dosen','$keterangan')");
+    $addtable = mysqli_query($conn, "insert into kom_kegiatancoas (nama_mahasiswa,npm,tanggal,dosen_pembimbing,kegiatan,judul,keterangan)
+    values ('$nama_mahasiswa','$npm','$tanggal','$dosen_pembimbing','$kegiatan','$judul','$keterangan')");
     if($addtable){
         header('location:jadwal_kegiatan.php');
     } else {
