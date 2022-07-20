@@ -17,71 +17,6 @@ function base_url($url = null) {
     }
 }
 
-//daftar
-if(isset($_POST['register'])){
-    //jika tombol register diklik
-
-    $username = $_POST['email'];
-    $password = $_POST['password'];
-
-    //fungsi enkrip password
-    $epassword = password_hash($password, PASSWORD_DEFAULT);
-
-    //insert into database
-    $insert = mysqli_query($conn,"INSERT INTO kom_user (email,password) VALUES ('$email','$epassword')");
-
-    if($insert){
-        //jika berhasil
-        header('location:index.php');
-    } else {
-        //jika gagal
-        echo '
-        <script>
-            alert("register gagal");
-            window.location.href="register.php";
-        </script>
-        ';
-    }
-}
-
-//TAMBAH DATA DOSEN
-if(isset($_POST['addnew'])){
-    $username      = $_POST['username'];
-    $email         = $_POST['email'];
-    $alamat        = $_POST['alamat'];
-    $no_hp         = $_POST['no_hp'];
-
-    $addtotable = mysqli_query($conn, "insert into kom_dokter (username,email,alamat,no_hp)
-    values ('$username','$email','$alamat','$no_hp')");
-    if($addtotable){
-        header('location:dosenpembimbing.php');
-    } else {
-        echo 'Gagal';
-        header('location:index.php');
-    }
-}
-
-//TAMBAH DATA JADWAL KEGIATAN
-if(isset($_POST['addkegiatan'])){
-    $nama_mahasiswa      = $_POST['nama_mahasiswa'];
-    $npm                 = $_POST['npm'];
-    $tanggal             = $_POST['tanggal'];
-    $dosen_pembimbing    = $_POST['dosen_pembimbing'];
-    $kegiatan            = $_POST['kegiatan'];
-    $judul               = $_POST['judul'];
-    $keterangan          = $_POST['keterangan'];
-
-
-    $addtable = mysqli_query($conn, "insert into kom_kegiatancoas (nama_mahasiswa,npm,tanggal,dosen_pembimbing,kegiatan,judul,keterangan)
-    values ('$nama_mahasiswa','$npm','$tanggal','$dosen_pembimbing','$kegiatan','$judul','$keterangan')");
-    if($addtable){
-        header('location:jadwal_kegiatan.php');
-    } else {
-        echo 'Gagal';
-        header('location:index.php');
-    }
-}
-
 //TAMBAH ABSENSI
 if(isset($_POST['add_absen'])){
     $tanggal        = $_POST['tanggal'];
@@ -134,6 +69,41 @@ if(isset($_POST['add_coas'])){
     values ('$nama_lengkap','$kelompok','$dosen_pembimbing','$nama_lengkap2','$nama_lengkap3','$nama_lengkap4')");
     if($addtable){
         header('location:data_coas.php');
+    } else {
+        echo 'Gagal';
+        header('location:index.php');
+    }
+}
+
+//tambah dosen
+if(isset($_POST['addnew'])){
+    $username       = $_POST['username'];
+    $email          = $_POST['email'];
+    $alamat         = $_POST['alamat'];
+    $no_hp          = $_POST['no_hp'];
+
+    $addtable = mysqli_query($conn, "insert into kom_dokter (username,email,alamat,no_hp)
+    values ('$username','$email','$alamat','$no_hp')");
+    if($addtable){
+        header('location:dosenpembimbing.php');
+    } else {
+        echo 'Gagal';
+        header('location:index.php');
+    }
+}
+
+//tambah kegiatan
+if(isset($_POST['addkegiatan'])){
+    $username             = $_POST['id_us'];
+    $dosen_pembimbing     = $_POST['dosen_pembimbing'];
+    $kegiatan             = $_POST['kegiatan'];
+    $judul                = $_POST['judul'];
+    $keterangan           = $_POST['keterangan'];
+
+    $addtable = mysqli_query($conn, "INSERT INTO kom_kegiatancoas (username,dosen_pembimbing,kegiatan,judul,keterangan)
+    values ('$username','$dosen_pembimbing','$kegiatan','$judul','$keterangan')");
+    if($addtable){
+        header('location:jadwal_kegiatan.php');
     } else {
         echo 'Gagal';
         header('location:index.php');

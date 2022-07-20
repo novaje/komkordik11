@@ -1,6 +1,6 @@
 <?php
 require 'function.php'
-include 'include/session.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -180,9 +180,9 @@ include 'include/session.php';
                                     <tbody>
 
                                         <?php
-                                            $ambildata = mysqli_query($conn, "select * from kom_kegiatancoas");
+                                            $ambildata = mysqli_query($conn, "SELECT * FROM kom_kegiatancoas RIGHT JOIN kom_user ON kom_kegiatancoas.id_us = kom_user.id_us");
                                             while($data=mysqli_fetch_array($ambildata)){
-                                                $nama_mahasiswa   = $data['nama_mahasiswa'];
+                                                $username         = $data['username'];
                                                 $tanggal          = $data['tanggal'];
                                                 $dosen_pembimbing = $data['dosen_pembimbing'];
                                                 $kegiatan         = $data['kegiatan'];
@@ -190,7 +190,7 @@ include 'include/session.php';
                                                 $keterangan       = $data['keterangan'];
                                         ?>
                                         <tr>
-                                            <td><?=$nama_mahasiswa;?></td>
+                                            <td><?=$username;?></td>
                                             <td><?=$tanggal;?></td>
                                             <td><?=$dosen_pembimbing;?></td>
                                             <td><?=$kegiatan;?></td>
@@ -246,7 +246,7 @@ include 'include/session.php';
                     <section class="base">
                 <div>
                     <p>Tanggal :</p>
-                    <input type="date" name="tanggal" class="form-control">
+                    <input type="date" name="tanggal" class="form-control" required>
                     <p>Dosen Pembimbing </p>
                     <select name="dosen_pembimbing" id="dosen_pembimbing" class="form_control">
                         <option value="">--Pilih--</option>
@@ -259,6 +259,7 @@ include 'include/session.php';
                     <input type="text" name="judul" class="form-control" required>
                     <p>Keterangan :</p>
                     <input type="text" name="keterangan" class="form-control">
+                    <input type="number" name="id_us" hidden class="form-control">
                     <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary" name="addkegiatan">Submit</button>

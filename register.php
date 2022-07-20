@@ -1,10 +1,8 @@
 <?php
-include "mysql_mysqli.inc.php";
-require 'function.php';
-include "../config.php";
-session_start();
+require 'function_registrasi.php';
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -28,20 +26,18 @@ session_start();
                             <div class="col-lg-7">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Register</h3></div>
-                                        <form class="pt-3"methode="POST" action="">
+                                        <form class="pt-3"method="POST" action="">
                                         <div class="row mb-3">
                                         <div class="row w-100 mx-0">
                                             <div class="col-md-6">
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                        Username
-                                                        <label for="email"></label>
-                                                        <input type="text" name="username" id="email" class="form-control" placeholder="tes@gmail.com">
+                                                <div class="form-group">
+                                                        <label for="username">Username</label>
+                                                        <input type="text" name="username" id="username" class="form-control">
                                                 </div>
                                                 </br>
-                                                <div class="form-floating mb-3 mb-md-0">
-                                                        Password
-                                                        <label for="password"></label>
-                                                        <input type="password" name="password" id="password" class="form-control" placeholder="password">
+                                                <div class="form-group">
+                                                        <label for="password">Password</label>
+                                                        <input type="password" name="password" id="password" class="form-control">
                                                 </div>
                                                 </br>
                                                 <button type="submit" name="register" class="btn btn-info">Register</button>

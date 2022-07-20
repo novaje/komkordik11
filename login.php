@@ -1,6 +1,6 @@
 <?php
-include "mysql_mysqli.inc.php";
 require 'function.php';
+require 'function_registrasi.php';
 include "../config.php";
 session_start();
 
@@ -76,7 +76,7 @@ if(!isset($_SESSION['log'])){
                 </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-block btn-primary" name="login">Login</button>
-                  <a class="btn btn-danger" href="register.php">Create Account</a>
+                  <button type="submit" name="register" class="btn btn-block btn-primary"> <a href=register.php> Create Account </button>
                 </div>
                 <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">

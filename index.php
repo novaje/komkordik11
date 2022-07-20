@@ -1,6 +1,8 @@
 <?php
 require 'function.php';
+require 'function_registrasi.php';
 
+echo 'berhasil login';
 ?>
 
 <!DOCTYPE html>
@@ -146,7 +148,9 @@ require 'function.php';
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">SELAMAT DATANG DI APLIKASI</h1>
+                    <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title">Selamat Datang di<strong> Aplikasi KOMKORDIK</strong></h5>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">KOMKORDIK RSUD-HAT</li>
                         </ol>

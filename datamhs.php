@@ -170,7 +170,7 @@ require 'cek.php';
                                     <tbody>
 
                                         <?php
-                                            $ambildata = mysqli_query($conn, "select * from kom_user");
+                                            $ambildata = mysqli_query($conn, "SELECT * FROM kom_user");
                                             while($data=mysqli_fetch_array($ambildata)){
                                                 $i=1;
                                                 $username   = $data['username'];
